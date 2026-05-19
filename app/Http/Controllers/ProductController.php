@@ -15,25 +15,25 @@ class ProductController extends Controller
 
     public function applyDiscount(Request $request)
     {
-        $discount = $request->input('discount');
-
-        
         $request->validate([
             'discount' => 'required|numeric|min:0|max:100',
         ]);
 
+        $discount = $request->discount;
+
         $products = Product::all();
 
-      
-        $discountedProducts = $products->map(function($product) use ($discount) {
-            $discountAmount = ($product->price * $discount) / 100;
-            $product->discounted_price = round($product->price - $discountAmount, 2);
+        $products = $products->map(function ($product) use ($discount) {
+
+            $increaseAmount = ($product->price * $discount) / 100;
+
+            $newPrice = $product->price + $increaseAmount;
+
+            $product->selling_price = round($newPrice, 2);
+
             return $product;
         });
 
-        return view('products.index', [
-            'products' => $discountedProducts,
-            'discount' => $discount
-        ]);
+        return view('products.index', compact('products', 'discount'));
     }
 }
