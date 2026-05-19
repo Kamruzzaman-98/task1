@@ -24,5 +24,5 @@ use App\Http\Controllers\ProductController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-    Route::post('/products/discount', [ProductController::class, 'applyDiscount'])->name('products.discount');
+    Route::post('/products/percentage', [ProductController::class, 'applyPercentage'])->name('products.percentage');
 });

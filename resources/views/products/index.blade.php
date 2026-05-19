@@ -110,14 +110,14 @@
 
     <h1 class="title">🛒 Product Price Calculator</h1>
 
-    <form method="POST" action="{{ route('products.discount') }}" class="discount-form">
+    <form method="POST" action="{{ route('products.percentage') }}" class="discount-form">
         @csrf
 
         <input
             type="number"
-            name="discount"
+            name="percentage"
             placeholder="Enter Percentage %"
-            value="{{ $discount ?? '' }}"
+            value="{{ $products ?? '' }}"
             min="0"
             required
         >
@@ -154,7 +154,7 @@
 
                 <td>
                     <span class="badge">
-                        {{ $discount ?? 0 }}%
+                        {{ $percentage ?? 0 }}%
                     </span>
                 </td>
 

@@ -13,19 +13,19 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
-    public function applyDiscount(Request $request)
+    public function applyPercentage(Request $request)
     {
         $request->validate([
-            'discount' => 'required|numeric|min:0|max:100',
+            'percentage' => 'required|numeric|min:0|max:100',
         ]);
 
-        $discount = $request->discount;
+        $percentage = $request->percentage;
 
         $products = Product::all();
 
-        $products = $products->map(function ($product) use ($discount) {
+        $products = $products->map(function ($product) use ($percentage) {
 
-            $increaseAmount = ($product->price * $discount) / 100;
+            $increaseAmount = ($product->price * $percentage) / 100;
 
             $newPrice = $product->price + $increaseAmount;
 
@@ -34,6 +34,6 @@ class ProductController extends Controller
             return $product;
         });
 
-        return view('products.index', compact('products', 'discount'));
+        return view('products.index', compact('products', 'percentage'));
     }
 }
