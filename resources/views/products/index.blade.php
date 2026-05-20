@@ -156,7 +156,6 @@
 
                 @foreach ($products as $product)
                     <tr>
-
                         <td>
                             {{ $product->name }}
                         </td>
@@ -168,10 +167,10 @@
                         <td>
                             <span class="badge">
 
-                                @if ($action == 'discount')
-                                    Discount {{ $percentage }}%
+                                @if (isset($action) && $action == 'discount')
+                                    Discount {{ $percentage ?? 0 }}%
                                 @else
-                                    Added {{ $percentage }}%
+                                    Added {{ $percentage ?? 0 }}%
                                 @endif
 
                             </span>

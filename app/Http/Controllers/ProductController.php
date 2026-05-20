@@ -54,6 +54,7 @@ class ProductController extends Controller
             'price' => $request->price,
         ]);
 
-        return redirect()->back()->with('success', 'Product Added Successfully');
+        return redirect()->route('products.index')
+            ->with('success', 'Product Added Successfully');
     }
 }
