@@ -15,25 +15,30 @@ class ProductController extends Controller
 
     public function applyPercentage(Request $request)
     {
-        $request->validate([
-            'percentage' => 'required|numeric|min:0|max:100',
-        ]);
-
         $percentage = $request->percentage;
+        $action = $request->action;
 
         $products = Product::all();
 
-        $products = $products->map(function ($product) use ($percentage) {
+        foreach ($products as $product) {
 
-            $increaseAmount = ($product->price * $percentage) / 100;
+            if ($action == 'add') {
 
-            $newPrice = $product->price + $increaseAmount;
+                $product->selling_price =
+                    $product->price +
+                    ($product->price * $percentage / 100);
+            } elseif ($action == 'discount') {
 
-            $product->selling_price = round($newPrice, 2);
+                $product->selling_price =
+                    $product->price -
+                    ($product->price * $percentage / 100);
+            }
+        }
 
-            return $product;
-        });
-
-        return view('products.index', compact('products', 'percentage'));
+        return view('products.index', compact(
+            'products',
+            'percentage',
+            'action'
+        ));
     }
 }
