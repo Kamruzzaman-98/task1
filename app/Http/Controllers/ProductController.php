@@ -41,4 +41,19 @@ class ProductController extends Controller
             'action'
         ));
     }
+
+    public function create()
+    {
+        return view('products.create');
+    }
+
+    public function store(Request $request)
+    {
+        Product::create([
+            'name' => $request->name,
+            'price' => $request->price,
+        ]);
+
+        return redirect()->back()->with('success', 'Product Added Successfully');
+    }
 }

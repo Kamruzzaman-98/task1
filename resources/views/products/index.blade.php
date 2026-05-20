@@ -103,11 +103,29 @@
             border-radius: 20px;
             font-size: 14px;
         }
+
+        .add-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .add-btn:hover {
+            background: #0056b3;
+        }
     </style>
 
     <div class="product-container">
 
         <h1 class="title">🛒 Product Price Calculator</h1>
+
+        <a href="{{ route('products.create') }}" class="add-btn">
+            + Add Product
+        </a>
 
         <form method="POST" action="{{ route('products.percentage') }}" class="discount-form">
             @csrf
