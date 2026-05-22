@@ -2,196 +2,391 @@
 
 @section('content')
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: #f4f6f9;
-            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            font-family: 'Segoe UI', sans-serif;
         }
 
-        .product-container {
-            width: 90%;
-            max-width: 1100px;
+        .container-box {
+            width: 95%;
+            max-width: 1200px;
             margin: 40px auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            color: #111827;
+        }
+
+        .header p {
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        .back-btn {
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            transition: .3s;
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            background: #1f2937;
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .05);
+        }
+
+        .top-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            outline: none;
+            font-size: 15px;
+            transition: .3s;
+        }
+
+        .search-box input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, .1);
         }
 
         .discount-form {
             display: flex;
-            justify-content: center;
             gap: 10px;
-            margin-bottom: 30px;
+            flex-wrap: wrap;
         }
 
         .discount-form input {
-            width: 200px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
+            padding: 14px 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            width: 180px;
+            outline: none;
+            font-size: 15px;
         }
 
-        .discount-form button {
-            background: #28a745;
-            color: white;
+        .btn {
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 14px 20px;
+            border-radius: 12px;
+            color: white;
             cursor: pointer;
-            font-size: 16px;
-            transition: 0.3s;
+            font-weight: 600;
+            transition: .3s;
         }
 
-        .discount-form button:hover {
-            background: #218838;
+        .btn-add {
+            background: #10b981;
+        }
+
+        .btn-discount {
+            background: #ef4444;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: .95;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            overflow: hidden;
-            border-radius: 10px;
+            min-width: 850px;
         }
 
-        table thead {
-            background: #343a40;
+        thead {
+            background: #111827;
             color: white;
         }
 
-        table th,
-        table td {
-            padding: 15px;
-            text-align: center;
+        th {
+            padding: 18px;
+            text-align: left;
+            font-size: 14px;
         }
 
-        table tbody tr {
-            border-bottom: 1px solid #ddd;
-            transition: 0.3s;
+        td {
+            padding: 18px;
+            border-bottom: 1px solid #e5e7eb;
+            color: #374151;
         }
 
-        table tbody tr:hover {
-            background: #f1f1f1;
+        tbody tr {
+            transition: .3s;
         }
 
-        .original-price {
-            color: #dc3545;
-            font-weight: bold;
+        tbody tr:hover {
+            background: #f9fafb;
         }
 
-        .percentage {
-            color: #007bff;
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .product-image {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .product-name {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .product-id {
+            color: #6b7280;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .price {
+            color: #ef4444;
             font-weight: bold;
         }
 
         .selling-price {
-            color: #28a745;
-            font-size: 18px;
+            color: #10b981;
             font-weight: bold;
+            font-size: 16px;
         }
 
         .badge {
-            background: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 14px;
-        }
-
-        .add-btn {
             display: inline-block;
-            margin-bottom: 20px;
-            background: #007bff;
+            padding: 7px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
             color: white;
-            padding: 10px 18px;
-            border-radius: 8px;
-            text-decoration: none;
         }
 
-        .add-btn:hover {
-            background: #0056b3;
+        .badge-add {
+            background: #2563eb;
+        }
+
+        .badge-discount {
+            background: #ef4444;
+        }
+
+        @media(max-width:768px) {
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .top-actions {
+                flex-direction: column;
+            }
+
+            .discount-form {
+                width: 100%;
+            }
+
+            .discount-form input,
+            .discount-form button {
+                width: 100%;
+            }
         }
     </style>
 
-    <div class="product-container">
+    <div class="container-box">
 
-        <h1 class="title">🛒 Product Price Calculator</h1>
+        {{-- HEADER --}}
+        <div class="header">
 
-        <a href="{{ route('dashboard') }}" class="add-btn">
-            Go to Dashboard
-        </a>
+            <div>
+                <h1>🛒 Product List</h1>
+                <p>Manage your product prices easily</p>
+            </div>
 
-        <form method="POST" action="{{ route('products.percentage') }}" class="discount-form">
-            @csrf
+            <a href="{{ route('dashboard') }}" class="back-btn">
+                ← Go Dashboard
+            </a>
 
-            <input type="number" name="percentage" placeholder="Enter Percentage %" min="0" required>
+        </div>
 
-            <button type="submit" name="action" value="add">
-                Add Percentage
-            </button>
+        {{-- MAIN CARD --}}
+        <div class="main-card">
 
-            <button type="submit" name="action" value="discount" style="background:#dc3545;">
-                Discount
-            </button>
-        </form>
+            {{-- TOP ACTIONS --}}
+            <div class="top-actions">
 
-        <table>
+                {{-- SEARCH --}}
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Search Product...">
+                </div>
 
-            <thead>
-                <tr>
-                    <th>Product Name</th>
-                    <th>Original Price</th>
-                    <th>Tpye</th>
-                    <th>New Selling Price</th>
-                </tr>
-            </thead>
+                {{-- FORM --}}
+                <form method="POST" action="{{ route('products.percentage') }}" class="discount-form">
 
-            <tbody>
+                    @csrf
 
-                @foreach ($products as $product)
-                    <tr>
-                        <td>
-                            {{ $product->name }}
-                        </td>
+                    <input type="number" name="percentage" placeholder="Enter Percentage %" min="0" required>
 
-                        <td class="original-price">
-                            {{ number_format($product->price, 2) }} Tk
-                        </td>
+                    <button type="submit" name="action" value="add" class="btn btn-add">
 
-                        <td>
-                            <span class="badge">
+                        ➕ Add Price
 
-                                @if (isset($action) && $action == 'discount')
-                                    Discount {{ $percentage ?? 0 }}%
-                                @else
-                                    Added {{ $percentage ?? 0 }}%
-                                @endif
+                    </button>
 
-                            </span>
-                        </td>
+                    <button type="submit" name="action" value="discount" class="btn btn-discount">
 
-                        <td class="selling-price">
+                        ➖ Discount
 
-                            @if (isset($product->selling_price))
-                                {{ number_format($product->selling_price, 2) }} Tk
-                            @else
-                                {{ number_format($product->price, 2) }} Tk
-                            @endif
+                    </button>
 
-                        </td>
+                </form>
 
-                    </tr>
-                @endforeach
+            </div>
 
-            </tbody>
+            {{-- TABLE --}}
+            <div class="table-wrapper">
 
-        </table>
+                <table id="productTable">
+
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Original Price</th>
+                            <th>Type</th>
+                            <th>New Selling Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach ($products as $product)
+                            <tr>
+
+                                <td>
+
+                                    <div class="product-info">
+
+                                        <img src="https://via.placeholder.com/55" class="product-image">
+
+                                        <div>
+
+                                            <div class="product-name">
+                                                {{ $product->name }}
+                                            </div>
+
+                                            <div class="product-id">
+                                                Product ID:
+                                                #{{ $product->id }}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td class="price">
+                                    {{ number_format($product->price, 2) }} Tk
+                                </td>
+
+                                <td>
+
+                                    @if (isset($action) && $action == 'discount')
+                                        <span class="badge badge-discount">
+                                            Discount {{ $percentage ?? 0 }}%
+                                        </span>
+                                    @else
+                                        <span class="badge badge-add">
+                                            Added {{ $percentage ?? 0 }}%
+                                        </span>
+                                    @endif
+
+                                </td>
+
+                                <td class="selling-price">
+
+                                    @if (isset($product->selling_price))
+                                        {{ number_format($product->selling_price, 2) }} Tk
+                                    @else
+                                        {{ number_format($product->price, 2) }} Tk
+                                    @endif
+
+                                </td>
+
+                            </tr>
+                        @endforeach
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
 
     </div>
+
+    {{-- SEARCH SCRIPT --}}
+    <script>
+        const searchInput = document.getElementById('searchInput');
+
+        searchInput.addEventListener('keyup', function() {
+
+            let filter = this.value.toLowerCase();
+
+            let rows = document.querySelectorAll('#productTable tbody tr');
+
+            rows.forEach(row => {
+
+                let text = row.innerText.toLowerCase();
+
+                row.style.display = text.includes(filter) ?
+                    '' :
+                    'none';
+
+            });
+
+        });
+    </script>
 @endsection
