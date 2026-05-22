@@ -7,8 +7,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+use App\Models\Product;
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
+
+    $products = Product::all();
+
+    return view('dashboard', compact('products'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -25,7 +30,7 @@ use App\Http\Controllers\ProductController;
 Route::middleware('auth')->group(function () {
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
     Route::post('/products/percentage', [ProductController::class, 'applyPercentage'])->name('products.percentage');
-    
+
     Route::get('/products/create', [ProductController::class, 'create'])
         ->name('products.create');
     Route::post('/products/store', [ProductController::class, 'store'])
