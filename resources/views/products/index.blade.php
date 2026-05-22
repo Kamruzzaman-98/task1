@@ -307,7 +307,8 @@
 
                                     <div class="product-info">
 
-                                        <img src="https://via.placeholder.com/55" class="product-image">
+                                        <img src="{{ $product->image ? asset('uploads/products/' . $product->image) : 'https://via.placeholder.com/55' }}"
+                                            class="product-image">
 
                                         <div>
 
