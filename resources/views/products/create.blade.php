@@ -97,7 +97,7 @@
 
         </form>
         <a href="{{ route('products.index') }}" class="back-btn">
-            ← Back To Products
+            ← Back To List
         </a>
 
     </div>
