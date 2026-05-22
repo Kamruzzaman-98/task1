@@ -328,7 +328,7 @@
                                 </td>
 
                                 <td class="price">
-                                    {{ number_format($product->price, 2) }} Tk
+                                    {{ number_format($product->price) }} Tk
                                 </td>
 
                                 <td>
@@ -348,9 +348,9 @@
                                 <td class="selling-price">
 
                                     @if (isset($product->selling_price))
-                                        {{ number_format($product->selling_price, 2) }} Tk
+                                        {{ number_format($product->selling_price) }} Tk
                                     @else
-                                        {{ number_format($product->price, 2) }} Tk
+                                        {{ number_format($product->price) }} Tk
                                     @endif
 
                                 </td>
