@@ -123,8 +123,8 @@
 
         <h1 class="title">🛒 Product Price Calculator</h1>
 
-        <a href="{{ route('products.create') }}" class="add-btn">
-            + Add Product
+        <a href="{{ route('dashboard') }}" class="add-btn">
+            Go to Dashboard
         </a>
 
         <form method="POST" action="{{ route('products.percentage') }}" class="discount-form">
