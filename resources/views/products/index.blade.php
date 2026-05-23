@@ -236,7 +236,6 @@
 
     <div class="container-box">
 
-        {{-- HEADER --}}
         <div class="header">
 
             <div>
@@ -250,18 +249,14 @@
 
         </div>
 
-        {{-- MAIN CARD --}}
         <div class="main-card">
 
-            {{-- TOP ACTIONS --}}
             <div class="top-actions">
 
-                {{-- SEARCH --}}
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="🔍 Search Product...">
                 </div>
 
-                {{-- FORM --}}
                 <form method="POST" action="{{ route('products.percentage') }}" class="discount-form">
 
                     @csrf
@@ -284,7 +279,6 @@
 
             </div>
 
-            {{-- TABLE --}}
             <div class="table-wrapper">
 
                 <table id="productTable">
@@ -368,7 +362,6 @@
 
     </div>
 
-    {{-- SEARCH SCRIPT --}}
     <script>
         const searchInput = document.getElementById('searchInput');
 

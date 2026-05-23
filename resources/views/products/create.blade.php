@@ -173,7 +173,6 @@
 
         <div class="form-card">
 
-            {{-- HEADER --}}
             <div class="form-header">
 
                 <h1>➕ Add Product</h1>
@@ -184,12 +183,10 @@
 
             </div>
 
-            {{-- FORM --}}
             <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
 
                 @csrf
 
-                {{-- PRODUCT NAME --}}
                 <div class="form-group">
 
                     <label>
@@ -207,7 +204,6 @@
 
                 </div>
 
-                {{-- PRODUCT PRICE --}}
                 <div class="form-group">
 
                     <label>
@@ -225,7 +221,6 @@
 
                 </div>
 
-                {{-- IMAGE UPLOAD --}}
                 <div class="form-group">
 
                     <label>
@@ -246,7 +241,6 @@
 
                     </label>
 
-                    {{-- IMAGE PREVIEW --}}
                     <center>
 
                         <img id="preview" class="preview-image">
@@ -261,7 +255,6 @@
 
                 </div>
 
-                {{-- BUTTON --}}
                 <button type="submit" class="submit-btn">
 
                     Save Product 🚀
@@ -270,7 +263,7 @@
 
             </form>
 
-            {{-- BACK --}}
+
             <center>
 
                 <a href="{{ route('products.index') }}" class="back-btn">
@@ -285,7 +278,6 @@
 
     </div>
 
-    {{-- IMAGE PREVIEW SCRIPT --}}
     <script>
         const imageInput = document.getElementById('imageInput');
 
