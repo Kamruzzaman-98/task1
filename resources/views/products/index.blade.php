@@ -331,7 +331,6 @@
                 ← Go Dashboard
             </a>
 
-
             <div>
                 <h1>🛒 Product List</h1>
                 <p>Manage your product prices easily</p>
@@ -340,8 +339,6 @@
             <button id="darkModeToggle" class="back-btn">
                 🌙 Dark Mode
             </button>
-
-
 
         </div>
 
@@ -512,7 +509,15 @@
         const darkBtn = document.getElementById('darkModeToggle');
 
         if (localStorage.getItem('dark-mode') === 'enabled') {
+
             document.body.classList.add('dark-mode');
+
+            darkBtn.innerHTML = '☀️ Light Mode';
+
+        } else {
+
+            darkBtn.innerHTML = '🌙 Dark Mode';
+
         }
 
         darkBtn.addEventListener('click', () => {
@@ -520,9 +525,17 @@
             document.body.classList.toggle('dark-mode');
 
             if (document.body.classList.contains('dark-mode')) {
+
                 localStorage.setItem('dark-mode', 'enabled');
+
+                darkBtn.innerHTML = '☀️ Light Mode';
+
             } else {
+
                 localStorage.setItem('dark-mode', 'disabled');
+
+                darkBtn.innerHTML = '🌙 Dark Mode';
+
             }
 
         });
