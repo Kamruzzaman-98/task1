@@ -11,6 +11,7 @@
         body {
             background: #f3f4f6;
             font-family: 'Segoe UI', sans-serif;
+            transition: 0.3s;
         }
 
         .container-box {
@@ -274,20 +275,73 @@
         .delete-btn:hover {
             transform: translateY(-2px);
         }
+
+        /* DARK MODE */
+
+        body.dark-mode {
+            background: #111827;
+            color: white;
+        }
+
+        body.dark-mode .main-card {
+            background: #1f2937;
+        }
+
+        body.dark-mode th {
+            background: #000;
+        }
+
+        body.dark-mode td {
+            color: #f3f4f6;
+            border-bottom: 1px solid #374151;
+        }
+
+        body.dark-mode .product-name,
+        body.dark-mode h1 {
+            color: white;
+        }
+
+        body.dark-mode .product-id,
+        body.dark-mode p {
+            color: #d1d5db;
+        }
+
+        body.dark-mode .search-box input,
+        body.dark-mode .discount-form input {
+            background: #374151;
+            color: white;
+            border: 1px solid #4b5563;
+        }
+
+        body.dark-mode .search-box input::placeholder,
+        body.dark-mode .discount-form input::placeholder {
+            color: #d1d5db;
+        }
+
+        body.dark-mode tbody tr:hover {
+            background: #374151;
+        }
     </style>
 
     <div class="container-box">
 
         <div class="header">
 
+            <a href="{{ route('dashboard') }}" class="back-btn">
+                ← Go Dashboard
+            </a>
+
+
             <div>
                 <h1>🛒 Product List</h1>
                 <p>Manage your product prices easily</p>
             </div>
 
-            <a href="{{ route('dashboard') }}" class="back-btn">
-                ← Go Dashboard
-            </a>
+            <button id="darkModeToggle" class="back-btn">
+                🌙 Dark Mode
+            </button>
+
+
 
         </div>
 
@@ -452,5 +506,25 @@
         function confirmDelete() {
             return confirm("Are you sure you want to delete this product?");
         }
+    </script>
+
+    <script>
+        const darkBtn = document.getElementById('darkModeToggle');
+
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+        }
+
+        darkBtn.addEventListener('click', () => {
+
+            document.body.classList.toggle('dark-mode');
+
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('dark-mode', 'enabled');
+            } else {
+                localStorage.setItem('dark-mode', 'disabled');
+            }
+
+        });
     </script>
 @endsection
