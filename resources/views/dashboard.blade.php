@@ -14,9 +14,7 @@
         }
 
         .dashboard-container {
-            width: 95%;
-            max-width: 1300px;
-            margin: 40px auto;
+            width: 100%;
         }
 
         /* HEADER */
@@ -294,196 +292,278 @@
             background: #dc2626;
             transform: translateY(-2px);
         }
+
+        /* LAYOUT */
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 260px;
+            background: #111827;
+            color: white;
+            padding: 30px 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .sidebar-logo {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-menu a {
+            display: block;
+            text-decoration: none;
+            color: #d1d5db;
+            padding: 14px 18px;
+            border-radius: 12px;
+            transition: .3s;
+            font-weight: 500;
+        }
+
+        .sidebar-menu a:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* MAIN CONTENT */
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        /* ACTIVE MENU */
+
+        .sidebar-menu a.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* SCROLLBAR */
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2563eb;
+            border-radius: 10px;
+        }
+
+        /* SIDEBAR ANIMATION */
+
+        .sidebar-menu a {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-menu a::before {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            background: rgba(255, 255, 255, .08);
+            left: 0;
+            top: 0;
+            transition: .3s;
+        }
+
+        .sidebar-menu a:hover::before {
+            width: 100%;
+        }
     </style>
 
-    <div class="dashboard-container">
 
-        {{-- HEADER --}}
-        <div class="dashboard-header">
 
-            <div class="header-content">
+        {{-- MAIN CONTENT --}}
+        <div class="main-content">
 
-                <h1>
-                    📊 Admin Dashboard
-                </h1>
+            {{-- HEADER --}}
+            <div class="dashboard-header">
 
-                <p>
-                    Manage your products, pricing calculations,
-                    discounts and inventory from one beautiful dashboard.
-                </p>
+                <div class="header-content">
 
-            </div>
+                    <h1>
+                        📊 Admin Dashboard
+                    </h1>
 
-        </div>
+                    <p>
+                        Manage your products, pricing calculations,
+                        discounts and inventory from one beautiful dashboard.
+                    </p>
 
-        {{-- QUICK STATS --}}
-        <div class="stats-grid">
-
-            <div class="stat-card">
-
-                <div class="stat-icon">🛒</div>
-
-                <h2>
-                    {{ $products->count() ?? 0 }}
-                </h2>
-
-                <p>Total Products</p>
-
-            </div>
-
-            <div class="stat-card">
-
-                <div class="stat-icon">💰</div>
-
-                <h2>
-                    {{ number_format($products->sum('price'), 2) ?? 0 }}
-                </h2>
-
-                <p>Total Product Value</p>
-
-            </div>
-
-            <div class="stat-card">
-
-                <div class="stat-icon">📈</div>
-
-                <h2>
-                    {{ number_format($products->max('price'), 2) ?? 0 }}
-                </h2>
-
-                <p>Highest Price</p>
-
-            </div>
-
-            <div class="stat-card">
-
-                <div class="stat-icon">📉</div>
-
-                <h2>
-                    {{ number_format($products->min('price'), 2) ?? 0 }}
-                </h2>
-
-                <p>Lowest Price</p>
-
-            </div>
-
-        </div>
-
-        {{-- MAIN CARDS --}}
-        <div class="dashboard-cards">
-
-            {{-- ALL PRODUCTS --}}
-            <div class="card">
-
-                <div class="card-icon blue">
-                    🛒
-                </div>
-
-                <h3>All Products</h3>
-
-                <p>
-                    View and manage all available products with
-                    modern product listing and pricing system.
-                </p>
-
-                <a href="{{ route('products.index') }}" class="card-btn btn-blue">
-
-                    View Products →
-
-                </a>
-
-            </div>
-
-            {{-- ADD PRODUCT --}}
-            <div class="card">
-
-                <div class="card-icon green">
-                    ➕
-                </div>
-
-                <h3>Add Product</h3>
-
-                <p>
-                    Create a new product quickly with
-                    pricing and product details.
-                </p>
-
-                <a href="{{ route('products.create') }}" class="card-btn btn-green">
-
-                    Add Product →
-
-                </a>
-
-            </div>
-
-            {{-- PRICE CALCULATOR --}}
-            <div class="card">
-
-                <div class="card-icon purple">
-                    💸
-                </div>
-
-                <h3>Price Calculator</h3>
-
-                <p>
-                    Calculate discount or added percentage
-                    instantly for all products.
-                </p>
-
-                <a href="{{ route('products.index') }}" class="card-btn btn-purple">
-
-                    Open Calculator →
-
-                </a>
-
-            </div>
-
-            {{-- REPORTS --}}
-            <div class="card">
-
-                <div class="card-icon orange">
-                    📊
-                </div>
-
-                <h3>Reports</h3>
-
-                <p>
-                    Analyze your pricing and product
-                    information with smart reports.
-                </p>
-
-                <a href="#" class="card-btn btn-orange">
-
-                    Coming Soon
-
-                </a>
-
-            </div>
-
-        </div>
-
-        {{-- FOOTER --}}
-        <div class="footer-box">
-
-            <div class="footer-content">
-
-                <form method="POST" action="{{ route('logout') }}" class="logout-form">
-                    @csrf
-
-                    <button type="submit" class="logout-btn">
-                        Logout
-                    </button>
-
-                </form>
-
-                <div class="footer-text">
-                    🚀 Your Product Management System is running smoothly.
-                    Manage everything from one place.
                 </div>
 
             </div>
 
-        </div>
+            {{-- QUICK STATS --}}
+            <div class="stats-grid">
 
-    </div>
+                <div class="stat-card">
+
+                    <div class="stat-icon">🛒</div>
+
+                    <h2>
+                        {{ $products->count() ?? 0 }}
+                    </h2>
+
+                    <p>Total Products</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">💰</div>
+
+                    <h2>
+                        {{ number_format($products->sum('price'), 2) ?? 0 }}
+                    </h2>
+
+                    <p>Total Product Value</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">📈</div>
+
+                    <h2>
+                        {{ number_format($products->max('price'), 2) ?? 0 }}
+                    </h2>
+
+                    <p>Highest Price</p>
+
+                </div>
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">📉</div>
+
+                    <h2>
+                        {{ number_format($products->min('price'), 2) ?? 0 }}
+                    </h2>
+
+                    <p>Lowest Price</p>
+
+                </div>
+
+            </div>
+
+            {{-- DASHBOARD CARDS --}}
+            <div class="dashboard-cards">
+
+                <div class="card">
+
+                    <div class="card-icon blue">
+                        🛒
+                    </div>
+
+                    <h3>All Products</h3>
+
+                    <p>
+                        View and manage all available products.
+                    </p>
+
+                    <a href="{{ route('products.index') }}" class="card-btn btn-blue">
+
+                        View Products →
+
+                    </a>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon green">
+                        ➕
+                    </div>
+
+                    <h3>Add Product</h3>
+
+                    <p>
+                        Add new products with pricing and images.
+                    </p>
+
+                    <a href="{{ route('products.create') }}" class="card-btn btn-green">
+
+                        Add Product →
+
+                    </a>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon purple">
+                        💸
+                    </div>
+
+                    <h3>Price Calculator</h3>
+
+                    <p>
+                        Calculate discounts and price increases instantly.
+                    </p>
+
+                    <a href="{{ route('products.index') }}" class="card-btn btn-purple">
+
+                        Open Calculator →
+
+                    </a>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-icon orange">
+                        📊
+                    </div>
+
+                    <h3>Reports</h3>
+
+                    <p>
+                        Analyze products and pricing reports.
+                    </p>
+
+                    <a href="#" class="card-btn btn-orange">
+
+                        Coming Soon
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            {{-- FOOTER --}}
+            <div class="footer-box">
+
+                <div class="footer-content">
+
+                    <div class="footer-text">
+                        🚀 Product Management System Running Smoothly.
+                    </div>
+
+                </div>
+
+            </div>
+
+
 @endsection
