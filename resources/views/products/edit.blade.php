@@ -151,13 +151,11 @@
 
             </div>
 
-            {{-- IMPORTANT: enctype added --}}
             <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
 
                 @csrf
                 @method('PUT')
 
-                {{-- NAME --}}
                 <div class="form-group">
 
                     <label>Product Name</label>
@@ -170,7 +168,6 @@
 
                 </div>
 
-                {{-- PRICE --}}
                 <div class="form-group">
 
                     <label>Product Price</label>
@@ -183,14 +180,12 @@
 
                 </div>
 
-                {{-- IMAGE --}}
                 <div class="form-group">
 
                     <label>Product Image</label>
 
                     <input type="file" name="image" accept="image/*">
 
-                    {{-- current image --}}
                     @if ($product->image)
                         <img src="{{ asset('uploads/products/' . $product->image) }}" class="current-image">
                     @endif
