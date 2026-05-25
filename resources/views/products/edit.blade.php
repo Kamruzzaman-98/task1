@@ -147,13 +147,12 @@
 
                 <h1>✏ Edit Product</h1>
 
-                <p>
-                    Update your product information
-                </p>
+                <p>Update your product information</p>
 
             </div>
 
-            <form method="POST" action="{{ route('products.update', $product->id) }}">
+            {{-- IMPORTANT: enctype added --}}
+            <form method="POST" action="{{ route('products.update', $product->id) }}" enctype="multipart/form-data">
 
                 @csrf
                 @method('PUT')
@@ -166,9 +165,7 @@
                     <input type="text" name="name" value="{{ $product->name }}" placeholder="Enter product name">
 
                     @error('name')
-                        <div class="error-text">
-                            {{ $message }}
-                        </div>
+                        <div class="error-text">{{ $message }}</div>
                     @enderror
 
                 </div>
@@ -181,9 +178,25 @@
                     <input type="number" name="price" value="{{ $product->price }}" placeholder="Enter product price">
 
                     @error('price')
-                        <div class="error-text">
-                            {{ $message }}
-                        </div>
+                        <div class="error-text">{{ $message }}</div>
+                    @enderror
+
+                </div>
+
+                {{-- IMAGE --}}
+                <div class="form-group">
+
+                    <label>Product Image</label>
+
+                    <input type="file" name="image" accept="image/*">
+
+                    {{-- current image --}}
+                    @if ($product->image)
+                        <img src="{{ asset('uploads/products/' . $product->image) }}" class="current-image">
+                    @endif
+
+                    @error('image')
+                        <div class="error-text">{{ $message }}</div>
                     @enderror
 
                 </div>

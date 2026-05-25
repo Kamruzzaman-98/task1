@@ -85,19 +85,27 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-
-            'name' => 'required|string|max:255',
-
-            'price' => 'required|numeric|min:0',
-
+            'name' => 'required',
+            'price' => 'required|numeric',
+            'image' => 'nullable|image'
         ]);
 
+        $imageName = $product->image;
+
+        if ($request->hasFile('image')) {
+
+            $imageName = time() . '.' . $request->image->extension();
+
+            $request->image->move(
+                public_path('uploads/products'),
+                $imageName
+            );
+        }
+
         $product->update([
-
             'name' => $request->name,
-
             'price' => $request->price,
-
+            'image' => $imageName
         ]);
 
         return redirect()
