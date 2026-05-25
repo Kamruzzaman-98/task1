@@ -269,6 +269,11 @@
         .delete-btn:hover {
             background: #dc2626;
         }
+
+        .edit-btn:hover,
+        .delete-btn:hover {
+            transform: translateY(-2px);
+        }
     </style>
 
     <div class="container-box">
@@ -390,13 +395,13 @@
 
                                     <div class="action-buttons">
 
-                                        <a href="" class="edit-btn">
+                                        <a href="{{ route('products.edit', $product->id) }}" class="edit-btn">
 
                                             Edit
 
                                         </a>
 
-                                        <form action="" method="POST">
+                                        <form action="{{ route('products.update', $product->id) }}" method="POST">
 
                                             @csrf
                                             @method('DELETE')
