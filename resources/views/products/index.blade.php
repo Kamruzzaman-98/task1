@@ -401,17 +401,14 @@
 
                                         </a>
 
-                                        <form action="{{ route('products.update', $product->id) }}" method="POST">
-
+                                        <form action="{{ route('products.destroy', $product->id) }}" method="POST"
+                                            onsubmit="return confirmDelete()">
                                             @csrf
                                             @method('DELETE')
 
-                                            <button class="delete-btn">
-
+                                            <button type="submit" class="delete-btn">
                                                 Delete
-
                                             </button>
-
                                         </form>
 
                                     </div>
@@ -451,5 +448,9 @@
             });
 
         });
+
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this product?");
+        }
     </script>
 @endsection
