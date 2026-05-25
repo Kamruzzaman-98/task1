@@ -557,6 +557,15 @@
 
                 <div class="footer-content">
 
+                    <form method="POST" action="{{ route('logout') }}" class="logout-form">
+                        @csrf
+
+                        <button type="submit" class="logout-btn">
+                            Logout
+                        </button>
+
+                    </form>
+
                     <div class="footer-text">
                         🚀 Product Management System Running Smoothly.
                     </div>
