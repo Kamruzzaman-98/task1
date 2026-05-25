@@ -232,6 +232,43 @@
                 width: 100%;
             }
         }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .edit-btn {
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .edit-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .delete-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .delete-btn:hover {
+            background: #dc2626;
+        }
     </style>
 
     <div class="container-box">
@@ -289,6 +326,7 @@
                             <th>Original Price</th>
                             <th>Type</th>
                             <th>New Selling Price</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
 
@@ -346,6 +384,32 @@
                                     @else
                                         {{ number_format($product->price) }} Tk
                                     @endif
+
+                                </td>
+                                <td>
+
+                                    <div class="action-buttons">
+
+                                        <a href="" class="edit-btn">
+
+                                            Edit
+
+                                        </a>
+
+                                        <form action="" method="POST">
+
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button class="delete-btn">
+
+                                                Delete
+
+                                            </button>
+
+                                        </form>
+
+                                    </div>
 
                                 </td>
 
