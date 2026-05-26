@@ -1,29 +1,17 @@
 @extends('layouts.app')
+
 @push('styles')
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #f3f4f6;
-            font-family: 'Segoe UI', sans-serif;
-            transition: 0.3s;
-        }
 
         .container-box {
-            width: 95%;
-            max-width: 1200px;
-            margin: 40px auto;
+            width: 100%;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
             gap: 15px;
         }
@@ -275,8 +263,6 @@
             transform: translateY(-2px);
         }
 
-        /* DARK MODE */
-
         body.dark-mode {
             background: #111827;
             color: white;
@@ -322,6 +308,7 @@
         }
     </style>
 @endpush
+
 @section('content')
     <div class="container-box">
 
