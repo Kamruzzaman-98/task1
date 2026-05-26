@@ -305,6 +305,58 @@
         body.dark-mode tbody tr:hover {
             background: #374151;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .modal-content {
+            background: #fff;
+            width: 500px;
+            padding: 25px;
+            border-radius: 16px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close {
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 10px;
+        }
     </style>
 @endpush
 
@@ -322,8 +374,8 @@
                 <p>Manage your product prices easily</p>
             </div>
 
-            <button id="darkModeToggle" class="back-btn">
-                🌙 Dark Mode
+            <button type="button" class="back-btn" id="openProductModal">
+                ➕ Add Product
             </button>
 
         </div>
@@ -460,6 +512,41 @@
                 </table>
 
             </div>
+
+        </div>
+
+    </div>
+
+    <div id="productModal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2>➕ Add Product</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+
+            <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" name="price" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Image</label>
+                    <input type="file" name="image">
+                </div>
+
+                <button type="submit" class="submit-btn">Save Product</button>
+
+            </form>
 
         </div>
 

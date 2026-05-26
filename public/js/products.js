@@ -25,31 +25,49 @@ document.addEventListener('DOMContentLoaded', function () {
         return confirm("Are you sure you want to delete this product?");
     };
 
+        const modal = document.getElementById('productModal');
+        const openBtn = document.getElementById('openProductModal');
+        const closeBtn = document.getElementById('closeModal');
 
-    const darkBtn = document.getElementById('darkModeToggle');
-
-    if (darkBtn) {
-
-        if (localStorage.getItem('dark-mode') === 'enabled') {
-            document.body.classList.add('dark-mode');
-            darkBtn.innerHTML = '☀️ Light Mode';
-        } else {
-            darkBtn.innerHTML = '🌙 Dark Mode';
-        }
-
-        darkBtn.addEventListener('click', () => {
-
-            document.body.classList.toggle('dark-mode');
-
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('dark-mode', 'enabled');
-                darkBtn.innerHTML = '☀️ Light Mode';
-            } else {
-                localStorage.setItem('dark-mode', 'disabled');
-                darkBtn.innerHTML = '🌙 Dark Mode';
-            }
-
+        openBtn.addEventListener('click', function () {
+            modal.style.display = 'flex';
         });
-    }
+
+        closeBtn.addEventListener('click', function () {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+        }
+    });
+
+
+    // const darkBtn = document.getElementById('darkModeToggle');
+
+    // if (darkBtn) {
+
+    //     if (localStorage.getItem('dark-mode') === 'enabled') {
+    //         document.body.classList.add('dark-mode');
+    //         darkBtn.innerHTML = '☀️ Light Mode';
+    //     } else {
+    //         darkBtn.innerHTML = '🌙 Dark Mode';
+    //     }
+
+    //     darkBtn.addEventListener('click', () => {
+
+    //         document.body.classList.toggle('dark-mode');
+
+    //         if (document.body.classList.contains('dark-mode')) {
+    //             localStorage.setItem('dark-mode', 'enabled');
+    //             darkBtn.innerHTML = '☀️ Light Mode';
+    //         } else {
+    //             localStorage.setItem('dark-mode', 'disabled');
+    //             darkBtn.innerHTML = '🌙 Dark Mode';
+    //         }
+
+    //     });
+    // }
 
 });
