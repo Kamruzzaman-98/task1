@@ -1,6 +1,5 @@
 @extends('layouts.app')
-
-@section('content')
+@push('styles')
     <style>
         * {
             margin: 0;
@@ -322,7 +321,8 @@
             background: #374151;
         }
     </style>
-
+@endpush
+@section('content')
     <div class="container-box">
 
         <div class="header">

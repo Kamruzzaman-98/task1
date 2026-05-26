@@ -8,6 +8,8 @@
 
     <title>Admin Panel</title>
 
+    @stack('styles')
+
     <style>
         * {
             margin: 0;
@@ -128,18 +130,22 @@
 
     </div>
 
+    @stack('scripts')
+
+    @if (session('success'))
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: "{{ session('success') }}",
+                timer: 2000,
+                showConfirmButton: false
+            });
+        </script>
+    @endif
+
+
 </body>
 
 </html>
-@if (session('success'))
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: "{{ session('success') }}",
-            timer: 2000,
-            showConfirmButton: false
-        });
-    </script>
-@endif
