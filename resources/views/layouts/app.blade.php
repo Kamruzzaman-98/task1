@@ -27,8 +27,6 @@
             min-height: 100vh;
         }
 
-        /* SIDEBAR */
-
         .sidebar {
             width: 260px;
             background: #111827;
@@ -80,6 +78,31 @@
             flex: 1;
             padding: 30px;
         }
+
+
+        .sidebar-bottom {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, .3);
+        }
     </style>
 
 </head>
@@ -117,8 +140,17 @@
                 </li>
 
             </ul>
+            <div class="sidebar-bottom">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
 
+                    <button type="submit" class="logout-btn">
+                        🚪 Logout
+                    </button>
+                </form>
+            </div>
         </div>
+
 
         <div class="main-content">
 

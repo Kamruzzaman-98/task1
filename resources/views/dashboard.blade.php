@@ -266,26 +266,6 @@
             color: #6b7280;
             font-size: 15px;
         }
-
-        .logout-form {
-            margin: 0;
-        }
-
-        .logout-btn {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: .3s;
-        }
-
-        .logout-btn:hover {
-            background: #dc2626;
-            transform: translateY(-2px);
-        }
     </style>
 @endpush
 
@@ -447,15 +427,6 @@
     <div class="footer-box">
 
         <div class="footer-content">
-
-            <form method="POST" action="{{ route('logout') }}" class="logout-form">
-                @csrf
-
-                <button type="submit" class="logout-btn">
-                    Logout
-                </button>
-
-            </form>
 
             <div class="footer-text">
                 🚀 Product Management System Running Smoothly.
