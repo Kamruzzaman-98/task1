@@ -75,7 +75,6 @@
             color: white;
         }
 
-        /* MAIN CONTENT */
 
         .main-content {
             flex: 1;
@@ -89,7 +88,7 @@
 
     <div class="layout">
 
-        {{-- SIDEBAR --}}
+
         <div class="sidebar">
 
             <div class="sidebar-logo">
@@ -121,7 +120,6 @@
 
         </div>
 
-        {{-- PAGE CONTENT --}}
         <div class="main-content">
 
             @yield('content')
