@@ -486,7 +486,8 @@
                                     <div class="action-buttons">
 
                                         <button type="button" class="edit-btn openEditModal" data-id="{{ $product->id }}"
-                                            data-name="{{ $product->name }}" data-price="{{ $product->price }}">
+                                            data-name="{{ $product->name }}" data-price="{{ $product->price }}"
+                                            data-image="{{ $product->image ? asset('uploads/products/' . $product->image) : asset('images/no-image.png') }}">
                                             Edit
                                         </button>
 
@@ -574,6 +575,20 @@
                 <div class="form-group">
                     <label>Price</label>
                     <input type="number" name="price" id="editPrice" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Current Image</label>
+
+                    <img id="previewImage" src="" alt="Product Image"
+                        style="
+                                width:100px;
+                                height:100px;
+                                object-fit:cover;
+                                border-radius:10px;
+                                display:block;
+                                margin-bottom:10px;
+                            ">
                 </div>
 
                 <div class="form-group">

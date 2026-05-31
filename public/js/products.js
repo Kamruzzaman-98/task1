@@ -55,9 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const id = this.dataset.id;
             const name = this.dataset.name;
             const price = this.dataset.price;
+            const image = this.dataset.image;
 
             document.getElementById('editName').value = name;
             document.getElementById('editPrice').value = price;
+            document.getElementById('previewImage').src = image;
 
             editForm.action = `/products/${id}`;
 
