@@ -484,11 +484,10 @@
 
                                     <div class="action-buttons">
 
-                                        <a href="{{ route('products.edit', $product->id) }}" class="edit-btn">
-
+                                        <button type="button" class="edit-btn openEditModal" data-id="{{ $product->id }}"
+                                            data-name="{{ $product->name }}" data-price="{{ $product->price }}">
                                             Edit
-
-                                        </a>
+                                        </button>
 
                                         <form action="{{ route('products.destroy', $product->id) }}" method="POST"
                                             onsubmit="return confirmDelete()">
@@ -545,6 +544,40 @@
                 </div>
 
                 <button type="submit" class="submit-btn">Save Product</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div id="editModal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2>✏️ Edit Product</h2>
+                <span class="close" id="closeEditModal">&times;</span>
+            </div>
+
+            <form id="editForm" method="POST">
+
+                @csrf
+                @method('PUT')
+
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" name="name" id="editName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" name="price" id="editPrice" required>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Update Product
+                </button>
 
             </form>
 

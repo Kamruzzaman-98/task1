@@ -44,6 +44,41 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
+    const editModal = document.getElementById('editModal');
+    const closeEditModal = document.getElementById('closeEditModal');
+    const editForm = document.getElementById('editForm');
+
+    document.querySelectorAll('.openEditModal').forEach(button => {
+
+        button.addEventListener('click', function () {
+
+            const id = this.dataset.id;
+            const name = this.dataset.name;
+            const price = this.dataset.price;
+
+            document.getElementById('editName').value = name;
+            document.getElementById('editPrice').value = price;
+
+            editForm.action = `/products/${id}`;
+
+            editModal.style.display = 'flex';
+        });
+
+    });
+
+    closeEditModal.addEventListener('click', () => {
+        editModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+
+        if (e.target === editModal) {
+            editModal.style.display = 'none';
+        }
+
+    });
+
+
     // const darkBtn = document.getElementById('darkModeToggle');
 
     // if (darkBtn) {
