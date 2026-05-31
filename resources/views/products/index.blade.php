@@ -235,6 +235,7 @@
             font-size: 14px;
             font-weight: 600;
             transition: .3s;
+            border: none;
         }
 
         .edit-btn:hover {
@@ -560,7 +561,7 @@
                 <span class="close" id="closeEditModal">&times;</span>
             </div>
 
-            <form id="editForm" method="POST">
+            <form id="editForm" method="POST" enctype="multipart/form-data">
 
                 @csrf
                 @method('PUT')
@@ -575,8 +576,13 @@
                     <input type="number" name="price" id="editPrice" required>
                 </div>
 
+                <div class="form-group">
+                    <label>Image</label>
+                    <input type="file" name="image">
+                </div>
+
                 <button type="submit" class="submit-btn">
-                    Update Product
+                    Update
                 </button>
 
             </form>
